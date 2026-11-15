@@ -1,42 +1,48 @@
 services:
-  # Backend FastAPI
+  # ── Backend FastAPI ──────────────────────────────────────────────────────
   - type: web
     name: shadowtrace-backend
     env: python
     plan: free
+    region: oregon
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: python run.py
+    healthCheckPath: /health
     envVars:
-      - key: PORT
-        value: 8000
       - key: SECRET_KEY
         generateValue: true
       - key: ALGORITHM
         value: HS256
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
-        value: 30
+        value: "30"
       - key: DATABASE_URL
         value: sqlite:///./shadowtrace.db
+      - key: UPLOAD_DIR
+        value: ./uploads
+      - key: MODEL_DIR
+        value: ./data/models
+      - key: CHROMA_DIR
+        value: ./data/chroma
       - key: CORS_ORIGINS
-        value: "*"
+        value: "https://shadowtrace-frontend.onrender.com,http://localhost:5173,http://localhost:3000"
       - key: PYTHONUNBUFFERED
         value: "1"
-    rootDir: backend
+      - key: DEBUG
+        value: "false"
 
-  # Frontend static site
+  # ── Frontend React (static site) ─────────────────────────────────────────
   - type: web
     name: shadowtrace-frontend
     env: static
     plan: free
-    buildCommand: pnpm install && pnpm run build
+    region: oregon
+    rootDir: frontend
+    buildCommand: npm install -g pnpm && pnpm install && pnpm run build
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: shadowtrace-backend
-          type: web
-          property: host
-    rootDir: frontend
+        value: https://shadowtrace-backend.onrender.com
     headers:
       - path: /*
         name: Cache-Control
