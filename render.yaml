@@ -34,10 +34,8 @@ services:
         value: "true"
 
   # ── Frontend React Static Site ────────────────────────────────────────────
-  - type: web
+  - type: static
     name: shadowtrace-frontend
-    runtime: static
-    plan: free
     rootDir: frontend
     buildCommand: "npm install -g pnpm && pnpm install && pnpm run build"
     staticPublishPath: dist
