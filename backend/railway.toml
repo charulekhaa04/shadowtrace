@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python run.py"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+
+[variables]
+PORT = "8000"
+PYTHONUNBUFFERED = "1"

@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #080D16;
+  --sidebar: #0B1220;
+  --card: #111B2B;
+  --surface: #162235;
+  --teal: #00D6C9;
+  --cyan: #00A6C7;
+  --critical: #FF4757;
+  --warning: #F5B942;
+  --success: #35C98A;
+  --ink: #E8EEF7;
+  --soft: #A0AEC0;
+  --muted: #6B7F99;
+  --faint: #3D5068;
+  --line: #1A2A3F;
+  --line-strong: #243550;
+}
+
+@theme {
+  --color-bg: #080D16;
+  --color-sidebar: #0B1220;
+  --color-card: #111B2B;
+  --color-surface: #162235;
+  --color-teal: #00D6C9;
+  --color-cyan: #00A6C7;
+  --color-critical: #FF4757;
+  --color-warning: #F5B942;
+  --color-success: #35C98A;
+  --color-ink: #E8EEF7;
+  --color-soft: #A0AEC0;
+  --color-muted: #6B7F99;
+  --color-faint: #3D5068;
+  --color-line: #1A2A3F;
+  --color-line-strong: #243550;
+  --font-sans: "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sidebar);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--faint);
+}
+
+/* Grid texture for auth panels */
+.grid-texture {
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.4;
+}
+
+/* Glow effects */
+.glow-teal {
+  box-shadow: 0 0 20px rgba(0, 214, 201, 0.15);
+}
+.glow-critical {
+  box-shadow: 0 0 20px rgba(255, 71, 87, 0.15);
+}
+
+/* ReactFlow overrides */
+.react-flow__background {
+  background-color: var(--card) !important;
+}
+.react-flow__controls {
+  background: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
+}
+.react-flow__controls-button {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--line) !important;
+  color: var(--soft) !important;
+  fill: var(--soft) !important;
+}
+.react-flow__controls-button:hover {
+  background: var(--card) !important;
+}
+.react-flow__minimap {
+  background: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
+}
+
+/* Animated gradient for hero */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #080D16, #0B1220, #111B2B, #162235);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse-teal {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pulse-teal {
+  animation: pulse-teal 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scan line animation */
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scan-animation {
+  animation: scan-line 3s linear infinite;
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* Transitions */
+.transition-all {
+  transition: all 0.2s ease;
+}

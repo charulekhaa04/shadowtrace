@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+*.so
+
+# Data & Models (large files - don't commit)
+backend/data/models/*.pkl
+backend/data/models/*.joblib
+backend/data/uploads/
+backend/data/chromadb/
+backend/shadowtrace.db
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.pnpm-store/
+
+# Misc
+.DS_Store
+*.log
+.idea/
+.vscode/
+*.swp
