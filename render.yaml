@@ -10,6 +10,8 @@ services:
     startCommand: "python run.py"
     healthCheckPath: /health
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
       - key: SECRET_KEY
         generateValue: true
       - key: ALGORITHM
@@ -38,11 +40,13 @@ services:
     name: shadowtrace-frontend
     runtime: static
     rootDir: frontend
-    buildCommand: "npm install -g pnpm && pnpm install && pnpm run build"
+    buildCommand: "corepack enable && pnpm install && pnpm run build"
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        value: "https://shadowtrace-backend.onrender.com"
+        value: "https://shadowtrace-backend-sxgf.onrender.com"
+      - key: NODE_VERSION
+        value: "20.11.0"
     headers:
       - path: /*
         name: Cache-Control
